@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tasks
   resources :users
   
   get 'login' => 'users#login', :as => 'login'
@@ -7,5 +8,5 @@ Rails.application.routes.draw do
   post 'register' => 'users#register_attempt'
   get 'logout' => 'users#logout', :as => 'logout'
 
-  root 'welcome#index'
+  root 'tasks#index'
 end

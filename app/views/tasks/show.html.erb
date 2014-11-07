@@ -1,0 +1,17 @@
+ 
+<%= link_to 'Back', tasks_path, :class => 'btn btn-default' %>
+<% if current_user and current_user.is_admin? %>
+  <%= link_to "Edit task", edit_task_path(@task), :class => 'btn btn-default' %>
+<% end %>
+
+<% if current_user %>
+  <%= link_to "Submit solution", @task, :class => 'btn btn-primary' %>
+<% end %>
+
+<h1><%= @task.title %></h1>
+ 
+<%= simple_format @task.content
+        .gsub(/== ([^=]+) ==[ \r]*[\n]/, '<h4>\1</h4>')
+        .gsub(/\[code\][\r\n]*((.|\n)*?)[\r\n]*\[\/code\]/, '<div class="well monospaced">\1</div>')
+    %>
+

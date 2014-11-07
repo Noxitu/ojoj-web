@@ -1,9 +1,5 @@
 <h1>Log In</h1>
 
-<% if @error %>
-  <p><%= @error %></p>
-<% end %>
-
 
 <%= form_tag( {:action => 'login_attempt'}, role: 'form' ) do %>
   <div class="form-group">
@@ -14,5 +10,5 @@
     <%= label_tag :password %>
     <%= password_field_tag :password, nil, class: 'form-control' %>
   </div>
-  <%= submit_tag "Login", class: 'btn btn-default' %>
+  <%= submit_tag "Login", class: 'btn btn-primary' %>
 <% end %>

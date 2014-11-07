@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     user = User.new(params.permit(:name,:password))
 	if user and user.save
 	  session[:user_id] = user.id
+	  flash[:success] = "Loged as #{user.name}"
       redirect_to root_url
 	else
 	  flash.now[:danger] = 'Invalid register data'
