@@ -45,6 +45,10 @@
 
 <div class="container">
 
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name.sub(/_.*/,'') %>" role="alert"><%= msg %></div>
+  <% end %>
+
    <%= yield %>
 
 </div><!-- /.container -->

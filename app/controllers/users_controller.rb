@@ -10,9 +10,10 @@ class UsersController < ApplicationController
     user = User.auth(params[:name], params[:password])
 	if user
 	  session[:user_id] = user.id
+	  flash[:success] = "Loged as #{user.name}"
 	  redirect_to root_url
 	else
-	  @error = 'Invalid login data'
+	  flash.now[:danger] = 'Invalid login data'
 	  render :login
 	end
   end
@@ -29,13 +30,14 @@ class UsersController < ApplicationController
 	  session[:user_id] = user.id
       redirect_to root_url
 	else
-	  @error = 'Invalid register data'
+	  flash.now[:danger] = 'Invalid register data'
 	  render register
 	end
   end
   
   def logout
     session.delete(:user_id)
+	flash[:info_loged_out] = "You have successfully logged out."
     redirect_to root_url
   end
 end

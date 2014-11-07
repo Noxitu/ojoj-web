@@ -1,7 +1,13 @@
 <h1>Register</h1>
 
-<%= form_tag(:action => 'register_attempt') do %>
-  <%= label_tag :name %> <%= text_field_tag :name %> <br>
-  <%= label_tag :password %> <%= password_field_tag :password %> <br>
-  <%= submit_tag("Register") %>
+<%= form_tag(:action => 'register_attempt', role: 'form') do %>
+  <div class="form-group">
+    <%= label_tag :name %>
+	<%= text_field_tag :name, nil, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :password %>
+    <%= password_field_tag :password, nil, class: 'form-control' %>
+  </div>
+  <%= submit_tag "Register", class: 'btn btn-default' %>
 <% end %>
