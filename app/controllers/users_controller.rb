@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     redirect_to root_url if current_user
 	
     user = User.new(params.permit(:name,:password))
-	if user
+	if user and user.save()
 	  session[:user_id] = user.id
       redirect_to root_url
 	else
