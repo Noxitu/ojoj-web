@@ -2,15 +2,7 @@
     <td><%= link_to "##{sub.id}", sub %></td>
 	<td><%= sub.task.title %></td>
 	<td><%= sub.user.name %></td>
-	<% if sub.cpu_used %>
-	  <td><%= sub.cpu_used %> sec</td>
-	<% else %>
-	  <td></td>
-	<% end %>
-	<% if sub.mem_used %>
-	  <td><%= sub.mem_used.to_i %> MB</td>
-	<% else %>
-	  <td></td>
-	<% end %>
+	<td><%= dynamic_precision sub.cpu_used, 'sec', 3 %></td>
+	<td><%= dynamic_precision sub.mem_used, 'MB', 2 %></td>
     <td><%= content_tag :span, result_title(sub.result), :class => "label label-#{result_class(sub.result)}" %></td>
 </tr>

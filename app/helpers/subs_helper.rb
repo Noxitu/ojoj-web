@@ -27,4 +27,15 @@ module SubsHelper
 	  when nil then 'default' 
 	end
   end
+  
+  def dynamic_precision(value, unit=nil, digits=3, max_prec=2)
+	if value
+	  prec = [digits - value.to_i.to_s.length, max_prec].min
+	  if prec > 0
+	    "%.#{prec}f #{unit}" % value
+	  else
+	    "#{value.to_i} #{unit}"
+	  end
+	end
+  end
 end
