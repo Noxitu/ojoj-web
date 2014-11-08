@@ -4,14 +4,7 @@
 <tr><th>Id</th><th>Task</th><th>User</th><th>CPU</th><th>MEM</th><th>Status</th></tr>
 
 <% @subs.each do |sub| %>
-  <tr>
-    <td><%= link_to "##{sub.id}", sub %></td>
-	<td><%= sub.task.title %></td>
-	<td><%= sub.user.name %></td>
-	<td></td>
-	<td></td>
-  <td><%= content_tag :span, result_title(sub.result), :class => "label label-#{result_class(sub.result)}" %></td>
-  </tr>
+  <%= render sub %>
 <% end %>
 
 </table>

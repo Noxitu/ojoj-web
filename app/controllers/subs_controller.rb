@@ -54,6 +54,8 @@ class SubsController < ApplicationController
 	
     @sub = Sub.find(params[:id])
 	@sub.result = params[:result]
+	@sub.cpu_used = params[:cpu] ? params[:cpu].to_i/1000.0 : nil
+	@sub.mem_used = params[:mem] ? params[:mem].to_i/1024.0 : nil
 	@sub.save
 	
 	render plain: ''
