@@ -5,7 +5,7 @@
 <% end %>
 
 <% if current_user %>
-  <%= link_to "Submit solution", @task, :class => 'btn btn-primary' %>
+  <%= link_to "Submit solution", new_sub_with_id_path(@task.id), :class => 'btn btn-primary' %>
 <% end %>
 
 <h1><%= @task.title %></h1>
@@ -13,5 +13,6 @@
 <%= simple_format @task.content
         .gsub(/== ([^=]+) ==[ \r]*[\n]/, '<h4>\1</h4>')
         .gsub(/\[code\][\r\n]*((.|\n)*?)[\r\n]*\[\/code\]/, '<div class="well monospaced">\1</div>')
+		.gsub(/\$([^$]+)\$/, '<i>\1</i>')
     %>
 

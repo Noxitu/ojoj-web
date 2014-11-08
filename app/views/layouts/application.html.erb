@@ -24,7 +24,7 @@
   <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
       <li class="<%= 'active' if current_page? tasks_path or current_page? root_path %>"><%= link_to "Tasks", tasks_path %></li>
-      <li class=""><a href="#">Submissions</a></li>
+      <li class="<%= 'active' if current_page? subs_path %>"><%= link_to "Submissions", subs_path %></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if current_user %>

@@ -1,13 +1,16 @@
 class UsersController < ApplicationController
 
   def login
-    redirect_to root_url if current_user
+    return redirect_to root_url if current_user
   end
   
   def login_attempt
-    redirect_to root_url if current_user
+    return redirect_to root_url if current_user
 	
     user = User.auth(params[:name], params[:password])
+	
+	puts user.inspect
+	
 	if user
 	  session[:user_id] = user.id
 	  flash[:success] = "Loged as #{user.name}"
@@ -19,11 +22,11 @@ class UsersController < ApplicationController
   end
   
   def register
-    redirect_to root_url if current_user
+    return redirect_to root_url if current_user
   end
   
   def register_attempt
-    redirect_to root_url if current_user
+    return redirect_to root_url if current_user
 	
     user = User.new(params.permit(:name,:password))
 	if user and user.save

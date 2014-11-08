@@ -1,0 +1,24 @@
+
+<% if params[:task_id] %>
+  <%= link_to 'Back', task_path(params[:task_id]), :class => 'btn btn-default' %>
+<% end %>
+  
+<h1>Submit solution</h1>
+
+<%= form_tag({action: :create}, multipart: true, :role => 'form') do %>
+
+  <div class="form-group">
+    <%= label_tag :task_id, "Problem" %>
+    <% if params[:task_id] %>
+      <%= select_tag "task_id", options_for_select(Task.all.collect {|t| [ t.title, t.id ] }, params[:task_id]), class: 'form-control'  %>
+    <% else %>
+      <%= select_tag "task_id", options_for_select(Task.all.collect {|t| [ t.title, t.id ] }), class: 'form-control', prompt: 'Select task'  %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :src, "Solution source" %>
+    <%= file_field_tag :src, class: 'form-control' %>
+  </div>
+  <%= submit_tag "Submit" %>
+<% end %>
