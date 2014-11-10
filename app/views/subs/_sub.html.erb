@@ -1,6 +1,6 @@
-<tr>
+<tr data-subid="<%= sub.id %>" <%= 'data-waiting' unless sub.result and sub.result >= 0 %>>
     <td><%= link_to "##{sub.id}", sub %></td>
-	<td><%= sub.task.title %></td>
+	<td><%= link_to sub.task.title, sub.task %></td>
 	<td><%= sub.user.name %></td>
 	<td><%= dynamic_precision sub.cpu_used, 'sec', 3 %></td>
 	<td><%= dynamic_precision sub.mem_used, 'MB', 2 %></td>

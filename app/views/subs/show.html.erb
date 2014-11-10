@@ -1,6 +1,6 @@
-<h1>Submissions</h1>
+<h1>Submission</h1>
 
-<table class="table">
+<table class="table ajax_submissions" data-id="<%= @sub.id %>" data-since="<%= @sub.updated_at.to_i %>">
 <tr><th>Id</th><th>Task</th><th>User</th><th>CPU</th><th>MEM</th><th>Status</th></tr>
 
 <%= render @sub %>
@@ -9,4 +9,8 @@
 
 <% if current_user and (current_user.is_admin? or current_user.id == @sub.user_id) %>
   <pre class="well monospaced"><%= @sub.src %></pre>
+<% end %>
+
+<% if current_user and current_user.is_admin? %>
+  <%= link_to 'Clear submission result', clear_sub_path(params[:id]), :class => 'btn btn-warning', data: { confirm: 'Are you sure?' } %><br><br>
 <% end %>

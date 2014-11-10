@@ -11,6 +11,7 @@ module SubsHelper
 	  when 6 then 'Unknown Error'
 	  when 7 then 'Nonzero Exit Code'
 	  when nil then 'Waiting' 
+	  when -1 then 'Waiting'
 	end
   end
   
@@ -21,10 +22,11 @@ module SubsHelper
 	  when 2 then 'primary' 
 	  when 3 then 'warning' 
 	  when 4 then 'warning' 
-	  when 5 then 'danger' 
+	  when 5 then 'danger'
 	  when 6 then 'danger'
 	  when 7 then 'info'
-	  when nil then 'default' 
+	  when nil then 'default'
+      when -1 then 'default'
 	end
   end
   

@@ -38,11 +38,23 @@ class SubsController < ApplicationController
     @sub = Sub.find(params[:id])
   end
   
+  def clear
+    return redirect_to root_url unless current_user and current_user.is_admin?
+	
+    @sub = Sub.find(params[:id])
+	@sub.result = @sub.cpu_used = @sub.mem_used = nil
+	@sub.save
+	
+	redirect_to @sub
+  end
+  
   def tester_api_get
     return redirect_to root_url unless current_user and current_user.is_tester?
 	
-    @sub = Sub.where( result: nil ).first
+    @sub = Sub.where( result: nil ).lock.first
 	if @sub
+	  @sub.result = -1
+	  @sub.save
       render plain: "#{@sub.id}\n#{@sub.task.id}\n#{@sub.src}"
 	else
 	  render plain: -1
@@ -59,5 +71,16 @@ class SubsController < ApplicationController
 	@sub.save
 	
 	render plain: ''
+  end
+  
+  def ajax
+    if params[:id]
+		@sub = Sub.find(params[:id])
+		return render json: [ [@sub.id, render_to_string(@sub)] ] if @sub.updated_at.to_i > params[:since].to_i
+	else
+		@subs = Sub.where('updated_at > ?', params[:since].to_i)
+		return render json: @subs.map {|s| [s.id, render_to_string(s)] }
+	end
+    render json: []
   end
 end

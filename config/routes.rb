@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get 'tester_api_get' => 'subs#tester_api_get'
   get 'tester_api_set/:id/:result' => 'subs#tester_api_set'
   get 'tester_api_set/:id/:result/:cpu/:mem' => 'subs#tester_api_set'
+  get 'subs/ajax/:since/:id' => 'subs#ajax'
+  get 'subs/ajax/:since' => 'subs#ajax'
+  get 'subs/clear/:id' => 'subs#clear', :as => 'clear_sub'
   
   get 'login' => 'users#login', :as => 'login'
   get 'register' => 'users#register', :as => 'register'
