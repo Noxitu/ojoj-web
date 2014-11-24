@@ -1,9 +1,9 @@
 
 var interval = 10;
-var interval_index_multiplayer = 6;
+var interval_index_multiplayer = 4;
 
 $(document).on('ready page:load', function () {
-  ignoreIntervalTics = 0;
+  ignoreIntervalTics = interval_index_multiplayer-1;
 });
 
 function ajax_data(data) {

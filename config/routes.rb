@@ -3,12 +3,14 @@ Rails.application.routes.draw do
   resources :tasks
   resources :subs
   get 'subs/new/:task_id' => 'subs#new', :as => 'new_sub_with_id'
-  get 'tester_api_get' => 'subs#tester_api_get'
-  get 'tester_api_set/:id/:result' => 'subs#tester_api_set'
-  get 'tester_api_set/:id/:result/:cpu/:mem' => 'subs#tester_api_set'
   get 'subs/ajax/:since/:id' => 'subs#ajax'
   get 'subs/ajax/:since' => 'subs#ajax'
   get 'subs/clear/:id' => 'subs#clear', :as => 'clear_sub'
+  get 'tasks/:task_id/subs' => 'subs#index', :as => 'show_task_subs'
+  
+  get 'tester_api_get' => 'api#get'
+  get 'tester_api_set/:id/:result' => 'api#set'
+  get 'tester_api_set/:id/:result/:cpu/:mem' => 'api#set'
   
   get 'login' => 'users#login', :as => 'login'
   get 'register' => 'users#register', :as => 'register'

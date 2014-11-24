@@ -8,6 +8,8 @@
   <%= link_to "Submit solution", new_sub_with_id_path(@task.id), :class => 'btn btn-primary' %>
 <% end %>
 
+<%= link_to "Show submissions", show_task_subs_path(@task), :class => 'btn btn-default' %>
+
 <h1><%= @task.title %></h1>
  
 <%= simple_format @task.content
