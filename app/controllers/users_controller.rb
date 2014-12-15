@@ -44,4 +44,30 @@ class UsersController < ApplicationController
 	flash[:info_loged_out] = "You have successfully logged out."
     redirect_to root_url
   end
+  
+  def index
+    @users = User.all
+  end
+  
+  def show
+    @user = User.find(params[:id])
+  end
+  
+  def edit_permissions
+    return redirect_to root_url unless current_user and current_user.permissions.exists?(:name => 'Manage permissions')
+    @user = User.find(params[:id])
+	@permissions = Permission.all
+  end
+  
+  def update_permissions
+    return redirect_to root_url unless current_user and current_user.permissions.exists?(:name => 'Manage permissions')
+    @user = User.find(params[:id])
+	@user.permissions.clear
+	Permission.all.each do |p|
+	  @user.permissions << p if params[:permissions].has_key?(p.name)
+	end
+	@user.save
+	
+	redirect_to @user
+  end
 end

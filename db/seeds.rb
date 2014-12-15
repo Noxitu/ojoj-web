@@ -6,5 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create :name => 'Grzesiu', :password => 'grzeg', :is_admin? => true
-User.create :name => 'Tester', :password => 'tets', :is_tester? => true
+grzesiu = User.create :name => 'Grzesiu', :password => 'grzeg'
+User.create :name => 'Tester', :password => 'tets'
+
+root_permission = Permission.create :name => 'Manage permissions'
+Permission.create :name => 'Manage tasks'
+Permission.create :name => 'Tester API'
+Permission.create :name => 'Manage subs'
+Permission.create :name => 'Manage shares'
+
+grzesiu.permissions << root_permission

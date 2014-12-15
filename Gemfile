@@ -29,4 +29,5 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "bcrypt-ruby", :require => "bcrypt"
 
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-switch-rails', '~> 3.0.0'
 

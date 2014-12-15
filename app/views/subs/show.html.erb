@@ -7,10 +7,10 @@
 
 </table>
 
-<% if current_user and (current_user.is_admin? or current_user.id == @sub.user_id) %>
+<% if current_user and (current_user.id == @sub.user_id or current_user.permissions.exists?(:name => 'Manage subs')) %>
   <pre class="well monospaced"><%= @sub.src %></pre>
 <% end %>
 
-<% if current_user and current_user.is_admin? %>
+<% if current_user and current_user.permissions.exists?(:name => 'Manage subs') %>
   <%= link_to 'Clear submission result', clear_sub_path(params[:id]), :class => 'btn btn-warning', data: { confirm: 'Are you sure?' } %><br><br>
 <% end %>

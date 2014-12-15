@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   post 'login' => 'users#login_attempt'
   post 'register' => 'users#register_attempt'
   get 'logout' => 'users#logout', :as => 'logout'
-
+  
+  get 'user/:id/permissions' => 'users#edit_permissions', :as => 'edit_user_permissions'
+  post 'user/:id/permissions' => 'users#update_permissions'
+  
   root 'tasks#index'
 end

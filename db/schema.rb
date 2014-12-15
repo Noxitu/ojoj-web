@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107231438) do
+ActiveRecord::Schema.define(version: 20141215204631) do
+
+  create_table "permissions", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permissions_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "permission_id"
+  end
 
   create_table "subs", force: true do |t|
     t.integer  "task_id",    null: false
@@ -35,11 +46,9 @@ ActiveRecord::Schema.define(version: 20141107231438) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name",                          null: false
-    t.string   "password_hash",                 null: false
-    t.string   "password_salt",                 null: false
-    t.boolean  "is_admin?",     default: false, null: false
-    t.boolean  "is_tester?",    default: false, null: false
+    t.string   "name",          null: false
+    t.string   "password_hash", null: false
+    t.string   "password_salt", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

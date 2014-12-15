@@ -1,0 +1,8 @@
+ 
+<%= link_to 'Back', users_path, :class => 'btn btn-default' %>
+<% if current_user and current_user.permissions.exists?(:name => 'Manage permissions') %>
+  <%= link_to "Edit permissions", edit_user_permissions_path(@user), :class => 'btn btn-default' %>
+<% end %>
+
+<h1><%= @user.name %></h1>
+

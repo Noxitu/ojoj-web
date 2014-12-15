@@ -1,0 +1,17 @@
+ 
+<%= link_to 'Back', users_path, :class => 'btn btn-default' %>
+
+<h1>Editing permissions for <%= @user.name %></h1>
+
+<%= form_tag do %>
+
+  <% @permissions.each do |p| %>
+    <p>
+      <%= check_box :permissions, p.name, {class: 'switchbtn', checked: @user.permissions.exists?(:name => p.name)}, nil, nil %>
+      <%= label :permissions, p.name %>
+    </p>
+  <% end %>
+  
+  <%= submit_tag "Save permissions", class: 'btn btn-success' %>
+  
+<% end %>

@@ -8,12 +8,12 @@ class TasksController < ApplicationController
   end
   
   def new
-    return redirect_to :index unless current_user and current_user.is_admin?
+    return redirect_to :index unless current_user and current_user.permissions.exists?( :name => 'Manage tasks' )
 	@task = Task.new
   end
   
   def create
-    return redirect_to :index unless current_user and current_user.is_admin?
+    return redirect_to :index unless current_user and current_user.permissions.exists?( :name => 'Manage tasks' )
     @task = Task.new(task_params)
  
     if @task.save
@@ -26,12 +26,12 @@ class TasksController < ApplicationController
   end
   
   def edit
-    return redirect_to :index unless current_user and current_user.is_admin?
+    return redirect_to :index unless current_user and current_user.permissions.exists?( :name => 'Manage tasks' )
 	@task = Task.find(params[:id]) 
   end
   
   def update
-    return redirect_to :index unless current_user and current_user.is_admin?
+    return redirect_to :index unless current_user and current_user.permissions.exists?( :name => 'Manage tasks' )
     @task = Task.find(params[:id])
  
     if @task.update(task_params)
@@ -44,7 +44,7 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    return redirect_to :index unless current_user and current_user.is_admin?
+    return redirect_to :index unless current_user and current_user.permissions.exists?( :name => 'Manage tasks' )
     @task = Task.find(params[:id])
     @task.destroy
  

@@ -42,7 +42,7 @@ class SubsController < ApplicationController
   end
   
   def clear
-    return redirect_to root_url unless current_user and current_user.is_admin?
+    return redirect_to root_url unless current_user and current_user.permissions.exists?( :name => 'Manage subs' )
 	
     @sub = Sub.find(params[:id])
 	@sub.result = @sub.cpu_used = @sub.mem_used = nil
