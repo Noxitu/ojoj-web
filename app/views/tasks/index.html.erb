@@ -7,10 +7,12 @@
 
 <table class="table">
   <tr>
+    <th>Id</th>
     <th>Title</th>
   </tr>
   <% @tasks.each do |task| %>
     <tr>
+	  <td><%= task.id %></td>
       <td><%= link_to task.title, task %></td>
     </tr>
   <% end %>

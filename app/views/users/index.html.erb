@@ -3,10 +3,12 @@
 
 <table class="table">
   <tr>
+    <th>Id</th>
     <th>Username</th>
   </tr>
   <% @users.each do |user| %>
     <tr>
+	  <td><%= user.id %></td>
       <td><%= link_to user.name, user %></td>
     </tr>
   <% end %>

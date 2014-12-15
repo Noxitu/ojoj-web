@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.all
+    @users = User.order(:id).all
   end
   
   def show
