@@ -8,7 +8,7 @@
 </table>
 
 <% if current_user and (current_user.id == @sub.user_id or current_user.permissions.exists?(:name => 'Manage subs')) %>
-  <pre class="well monospaced"><%= @sub.src %></pre>
+  <pre class="well monospaced" data-do-syntax-highlighting="c++11"><%= @sub.src %></pre>
 <% end %>
 
 <% if current_user and current_user.permissions.exists?(:name => 'Manage subs') %>

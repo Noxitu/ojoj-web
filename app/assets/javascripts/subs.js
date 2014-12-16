@@ -37,3 +37,5 @@ setInterval( function() {
 		ignoreIntervalTics--;
 		
 }, interval*1000 );
+
+//= require syntax_highlighting.js
