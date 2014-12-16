@@ -9,7 +9,7 @@ $(document).on('ready page:load', function () {
 	
 	var src = $(this).html();
 	var out = [];
-	var regex = /((\n|^)\s*#[^\n]*)|(\/\/[^\n]*)|(\/\*[\s\S]*?\*\/)|(\d+([Ll]{0,2}[Uu]?|\.\d+[Ff]?))|("[^"]*")|('[^']+')|(\b(and|auto|bool|break|case|char|class|const|continue|default|delete|do|double|else|enum|false|float|for|if|inline|int|long|namespace|new|operator|private|public|register|return|short|signed|sizeof|static|struct|switch|template|this|true|typedef|typename|union|unsigned|using|void|while)\b)/;
+	var regex = /((\n|^)\s*#[^\n]*)|(\/\/[^\n]*)|(\/\*[\s\S]*?\*\/)|(\b\d+([Ll]{0,2}[Uu]?|\.\d+[Ff]?)\b)|("[^"]*")|('[^']+')|(\b(and|auto|bool|break|case|char|class|const|continue|default|delete|do|double|else|enum|false|float|for|if|inline|int|long|namespace|new|operator|private|public|register|return|short|signed|sizeof|static|struct|switch|template|this|true|typedef|typename|union|unsigned|using|void|while)\b)/;
 	
 	function push_highlight( thing, cssclass ) {
 		out.push( '<span class="syntax-highlighting-' );
