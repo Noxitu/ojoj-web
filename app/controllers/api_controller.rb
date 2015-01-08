@@ -1,8 +1,6 @@
 class ApiController < ApplicationController
  
   def get
-    return render plain: current_user
-	
     return redirect_to root_url unless current_user and current_user.permissions.exists?( :name => 'Tester API' )
 	
     @sub = Sub.where( result: nil ).lock.first
