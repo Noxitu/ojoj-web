@@ -17,6 +17,15 @@
 	font-weight: bold;
 }
 
+.syntax-highlighting-reference {
+	border-bottom: 1px dashed #ccc;
+	cursor: pointer;
+}
+
+.syntax-highlighting-reference:hover {
+	border-bottom: 1px dashed black;
+}
+
 .syntax-highlighting-error {
 	font-weight: bold;
 	background-color: red;
