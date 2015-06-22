@@ -51,6 +51,12 @@ class SubsController < ApplicationController
 	redirect_to @sub
   end
   
+  def csv
+    return redirect_to root_url unless current_user and current_user.permissions.exists?( :name => 'Manage subs' )
+    @subs = Sub.all.order(id: :desc)
+    send_data @subs.as_csv
+  end
+  
   def ajax
     if params[:id]
 		@sub = Sub.find(params[:id])

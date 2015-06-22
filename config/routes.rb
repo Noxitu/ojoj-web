@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   resources :tasks
+  get 'subs.csv' => 'subs#csv', :as => 'subs_csv'
   resources :subs
   get 'subs/new/:task_id' => 'subs#new', :as => 'new_sub_with_id'
   get 'subs/ajax/:since/:id' => 'subs#ajax'

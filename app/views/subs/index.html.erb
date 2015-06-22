@@ -1,5 +1,9 @@
 <h1>Submissions</h1>
 
+<% if current_user and current_user.permissions.exists?(:name => 'Manage subs') %>
+  <%= link_to "Export to csv", subs_csv_path, :class => 'btn btn-default' %><br><br>
+<% end %>
+
 <table class="table ajax_submissions" data-since="<%= @subs.map{ |s| s.updated_at.to_i }.max %>">
 <tr><th>Id</th><th>Task</th><th>User</th><th>CPU</th><th>MEM</th><th>Status</th></tr>
 
