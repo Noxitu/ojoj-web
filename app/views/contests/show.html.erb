@@ -1,0 +1,12 @@
+ 
+<%= link_to 'Back', groups_path, :class => 'btn btn-default' %>
+<%= link_to "Edit group", edit_group_path(@group), :class => 'btn btn-default' %>
+
+<h1><%= @group.name %></h1>
+
+<h4>Users in this group:</h4>
+<ul>
+  <% @group.users.each do |u| %>
+   <li> <%= link_to u.name, u %> </li>
+  <% end %>
+</ul>

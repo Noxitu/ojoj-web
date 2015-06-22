@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   
   has_and_belongs_to_many :permissions
+  has_and_belongs_to_many :groups
   
   def encrypt_password
     if password.present?

@@ -1,0 +1,19 @@
+
+<% if current_user and current_user.permissions.exists?(:name => 'Manage tasks') %>
+  <%= link_to "New group", new_group_path, :class => 'btn btn-default' %><br><br>
+<% end %>
+
+<h1>Groups</h1>
+
+<table class="table">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+  </tr>
+  <% @groups.each do |group| %>
+    <tr>
+	  <td><%= group.id %></td>
+      <td><%= link_to group.name, group %></td>
+    </tr>
+  <% end %>
+</table>

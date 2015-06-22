@@ -3,6 +3,15 @@
 <% if current_user and current_user.permissions.exists?(:name => 'Manage permissions') %>
   <%= link_to "Edit permissions", edit_user_permissions_path(@user), :class => 'btn btn-default' %>
 <% end %>
+<% if current_user and current_user.permissions.exists?(:name => 'Manage tasks') %>
+  <%= link_to "Edit groups", edit_user_groups_path(@user), :class => 'btn btn-default' %>
+<% end %>
 
 <h1><%= @user.name %></h1>
 
+<h4>User belongs to:</h4>
+<ul>
+  <% @user.groups.each do |g| %>
+   <li> <%= g.name %> </li>
+  <% end %>
+</ul>

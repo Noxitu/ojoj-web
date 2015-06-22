@@ -1,0 +1,9 @@
+<h1>Edit group</h1>
+
+
+
+<%= render layout: 'form' do %>
+  <%= link_to 'Back', @group, :class => 'btn btn-default' %>
+  <%= link_to 'Destroy', group_path(@group), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
+<% end %>
+ 

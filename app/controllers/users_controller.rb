@@ -71,4 +71,22 @@ class UsersController < ApplicationController
 	redirect_to @user
   end
   
+  def edit_groups
+    return redirect_to root_url unless current_user and current_user.permissions.exists?(:name => 'Manage tasks')
+    @user = User.find(params[:id])
+	@groups = Group.all
+  end
+  
+  def update_groups
+    return redirect_to root_url unless current_user and current_user.permissions.exists?(:name => 'Manage tasks')
+    @user = User.find(params[:id])
+	@user.groups.clear
+	Group.all.each do |g|
+	  @user.groups << g if params[:groups].has_key?(g.id.to_s)
+	end
+	@user.save
+	
+	redirect_to @user
+  end
+  
 end

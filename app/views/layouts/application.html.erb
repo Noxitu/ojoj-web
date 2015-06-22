@@ -25,6 +25,11 @@
     <ul class="nav navbar-nav">
       <li class="<%= 'active' if current_page? tasks_path or current_page? root_path %>"><%= link_to "Tasks", tasks_path %></li>
       <li class="<%= 'active' if current_page? subs_path %>"><%= link_to "Submissions", subs_path %></li>
+      <li class="<%= 'active' if current_page? users_path %>"><%= link_to "Users", users_path %></li>
+      <% if current_user and current_user.permissions.exists?(:name => 'Manage tasks') %>
+        <li class="<%= 'active' if current_page? groups_path %>"><%= link_to "Groups", groups_path %></li>
+        <li class="<%= 'active' if current_page? contests_path %>"><%= link_to "Contsts", contests_path %></li>
+      <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if current_user %>

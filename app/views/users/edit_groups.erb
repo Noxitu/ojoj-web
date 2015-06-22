@@ -1,0 +1,17 @@
+ 
+<%= link_to 'Back', @user, :class => 'btn btn-default' %>
+
+<h1>Editing groups for <%= @user.name %></h1>
+
+<%= form_tag do %>
+
+  <% @groups.each do |g| %>
+    <p>
+      <%= check_box :groups, g.id, {class: 'switchbtn', checked: @user.groups.exists?(g)}, nil, nil %>
+      <%= label :groups, g.id, g.name %>
+    </p>
+  <% end %>
+  
+  <%= submit_tag "Save groups", class: 'btn btn-success' %>
+  
+<% end %>

@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :users
   resources :tasks
   resources :subs
+  resources :groups
+  resources :contests
+  
   get 'subs/new/:task_id' => 'subs#new', :as => 'new_sub_with_id'
   get 'subs/ajax/:since/:id' => 'subs#ajax'
   get 'subs/ajax/:since' => 'subs#ajax'
@@ -20,6 +23,9 @@ Rails.application.routes.draw do
   
   get 'user/:id/permissions' => 'users#edit_permissions', :as => 'edit_user_permissions'
   post 'user/:id/permissions' => 'users#update_permissions'
+  
+  get 'user/:id/groups' => 'users#edit_groups', :as => 'edit_user_groups'
+  post 'user/:id/groups' => 'users#update_groups'
   
   root 'tasks#index'
 end

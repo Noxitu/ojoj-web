@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141215204631) do
+ActiveRecord::Schema.define(version: 20150618103434) do
+
+  create_table "contests", force: true do |t|
+    t.string  "name",     null: false
+    t.integer "group_id", null: false
+  end
+
+  add_index "contests", ["group_id"], name: "index_contests_on_group_id"
+
+  create_table "groups", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+  end
 
   create_table "permissions", force: true do |t|
     t.string   "name",       null: false
@@ -43,7 +61,10 @@ ActiveRecord::Schema.define(version: 20141215204631) do
     t.text     "content",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "contest_id"
   end
+
+  add_index "tasks", ["contest_id"], name: "index_tasks_on_contest_id"
 
   create_table "users", force: true do |t|
     t.string   "name",          null: false

@@ -1,0 +1,19 @@
+
+<% if current_user and current_user.permissions.exists?(:name => 'Manage tasks') %>
+  <%= link_to "New contest", new_contest_path, :class => 'btn btn-default' %><br><br>
+<% end %>
+
+<h1>Contests</h1>
+
+<table class="table">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+  </tr>
+  <% @contests.each do |c| %>
+    <tr>
+	  <td><%= c.id %></td>
+      <td><%= link_to c.name, c %></td>
+    </tr>
+  <% end %>
+</table>
