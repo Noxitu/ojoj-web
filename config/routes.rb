@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   resources :tasks
+  get 'subs.csv' => 'subs#csv', :as => 'subs_csv'
   resources :subs
   resources :groups
   resources :contests
