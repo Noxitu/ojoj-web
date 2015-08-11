@@ -1,0 +1,36 @@
+
+$red: #d9534f;
+$green: #5cb85c;
+$yellow: #f0ad4e;
+
+.group-user-row {
+  cursor: pointer;
+}
+
+.group-user-remove .group-user-row {
+  &.checked {
+    background-color: lighten($red, 20%);
+  }
+
+  &:hover {
+    background-color: lighten($red, 35%);
+  }
+
+  &.checked:hover {
+    background-color: lighten($red, 28%);
+  }
+}
+
+.group-user-add .group-user-row {
+  &.checked {
+    background-color: lighten($green, 20%);
+  }
+
+  &:hover {
+    background-color: lighten($green, 35%);
+  }
+
+  &.checked:hover {
+    background-color: lighten($green, 28%);
+  }
+}

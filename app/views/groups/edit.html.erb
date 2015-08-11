@@ -1,9 +1,43 @@
 <h1>Edit group</h1>
 
+<%= form_for @group, role: 'form' do |f| %>
+<%= link_to 'Back', @group, :class => 'btn btn-default' %>
+<%= link_to 'Destroy', group_path(@group), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
+<%= f.submit :class => 'btn btn-success' %>
+<br><br>
 
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <br><br>
+  
+  <h4>Users in this group:</h4>
+  <table class="table group-user-remove">
+    <tr>
+      <th>Name</th>
+    </tr>
+    <% @group.users.each do |u| %>
+      <tr class="group-user-row">
+        <td><%= check_box_tag "remove[#{u.id}]" %><%= u.name %></td>
+      </tr>
+    <% end %>
+  </table>
+  
+  <br><br>
+  
+  <h4>Users not in this group:</h4>
+  <table class="table group-user-add">
+    <tr>
+      <th>Name</th>
+    </tr>
+    <% @other_users.each do |u| %>
+      <tr class="group-user-row">
+        <td><%= check_box_tag "add[#{u.id}]" %><%= u.name %></td>
+      </tr>
+    <% end %>
+  </table>
 
-<%= render layout: 'form' do %>
-  <%= link_to 'Back', @group, :class => 'btn btn-default' %>
-  <%= link_to 'Destroy', group_path(@group), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
+  <br><br>
+  <%= f.submit :class => 'btn btn-success' %>
 <% end %>
- 

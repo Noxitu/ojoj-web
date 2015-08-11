@@ -19,28 +19,37 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
  
     if @group.save
-	  flash[:success] = "Group \"#{@group.name}\" created."
+	    flash[:success] = "Group \"#{@group.name}\" created."
       redirect_to @group
     else
-	  flash_now_errors @group
+	    flash_now_errors @group
       render 'new'
     end
   end
   
   def edit
     return redirect_to :root unless current_user and current_user.permissions.exists?( :name => 'Manage tasks' )
-	@group = Group.find(params[:id]) 
+	  @group = Group.find(params[:id]) 
+    
+    @other_users = User.where.not(id: @group.users)
   end
   
   def update
     return redirect_to :root unless current_user and current_user.permissions.exists?( :name => 'Manage tasks' )
     @group = Group.find(params[:id])
+    
+    if params['add']
+      @group.users << User.where(id: params['add'].keys).where.not(id: @group.users)
+    end
+    if params['remove']
+      @group.users.delete User.where(id: params['remove'].keys)
+    end
  
     if @group.update(group_params)
-	  flash[:success] = "Group \"#{@group.name}\" saved."
+	    flash[:success] = "Group \"#{@group.name}\" saved."
       redirect_to @group
     else
-	  flash_now_errors @group
+	    flash_now_errors @group
       render 'edit'
     end
   end
